@@ -8,9 +8,9 @@ pipeline {
             git(url: 'https://github.com/jcmt2k/personas.git', branch: 'master')
           }
         }
-        stage('') {
+        stage('Notificar') {
           steps {
-            mail(subject: 'STARTED: Job \'${env.JOB_NAME} [${env.BUILD_NUMBER}]\'', body: '""<p>STARTED: Job \'${env.JOB_NAME} [${env.BUILD_NUMBER}]\':</p>           <p>Check console output at "<a href="${env.BUILD_URL}">${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>"</p>""', bcc: '[[$class: \'DevelopersRecipientProvider\']]', from: 'jr.panozo@gmail.com', replyTo: 'jr.panozo@gmail.com', to: 'jr.panozo@gmail.com')
+            mail(subject: '$DEFAULT_SUBJECT', body: '$DEFAULT_CONTENT  Changes:  ${CHANGES, showPaths=true, format="%a: %r %p \\n--\\"%m\\"", pathFormat="\\n\\t- %p"}', bcc: '[[$class: \'DevelopersRecipientProvider\']]', from: 'jr.panozo@gmail.com', replyTo: '$DEFAULT_REPLYTO', cc: 'jr.panozo@gmail.com')
           }
         }
       }
