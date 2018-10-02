@@ -2,17 +2,8 @@ pipeline {
   agent any
   stages {
     stage('Descargar') {
-      parallel {
-        stage('Descargar') {
-          steps {
-            git(url: 'https://github.com/jcmt2k/personas.git', branch: 'master')
-          }
-        }
-        stage('Notificar') {
-          steps {
-            emailext(subject: '$DEFAULT_SUBJECT', attachLog: true, body: '$DEFAULT_CONTENT  Changes:  ${CHANGES, showPaths=true, format="%a: %r %p \\n--\\"%m\\"", pathFormat="\\n\\t- %p"}', replyTo: '$DEFAULT_REPLYTO', from: 'jr.panozo@gmail.com', to: 'jr.panozo@gmail.com')
-          }
-        }
+      steps {
+        git(url: 'https://github.com/jcmt2k/personas.git', branch: 'master')
       }
     }
     stage('Preparar') {
