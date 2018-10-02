@@ -9,22 +9,28 @@ pipeline {
     stage('Preparar') {
       steps {
         sh 'python --version'
+        sh './jenkins/scripts/prepara.sh'
       }
     }
     stage('Probar') {
       steps {
+        sh './jenkins/scripts/pruebas-unitarias.sh'
         echo 'Pruebas unitarias OK'
-        echo 'Pruebas de aceptación OK'
+        sh './jenkins/scripts/pruebas-aceptacion.sh'
+        echo 'Pruebas de aceptaciÃ³n OK'
       }
     }
     stage('Entregar') {
       steps {
+        sh './jenkins/scripts/entregar-software.sh'
         echo 'Entregar software OK'
-        echo 'Entregar documentación OK'
+        sh './jenkins/scripts/entregar-doc.sh'
+        echo 'Entregar documentaciÃ³n OK'
       }
     }
     stage('Prueba Final') {
       steps {
+        sh './jenkins/scripts/prueba-final.sh'
         echo 'Prueba de aceptacion OK'
       }
     }
