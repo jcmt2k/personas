@@ -1,0 +1,1 @@
+echo "Pruebas aceptación OK"
