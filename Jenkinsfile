@@ -2,8 +2,17 @@ pipeline {
   agent any
   stages {
     stage('Descargar') {
-      steps {
-        git(url: 'https://github.com/jcmt2k/personas.git', branch: 'master')
+      parallel {
+        stage('Descargar') {
+          steps {
+            git(url: 'https://github.com/jcmt2k/personas.git', branch: 'master')
+          }
+        }
+        stage('') {
+          steps {
+            emailext(subject: 'jr.panozo@gmail.com', body: 'Notificacion Descargar', compressLog: true, from: 'jr.panozo@gmail.com')
+          }
+        }
       }
     }
     stage('Preparar') {
