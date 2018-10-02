@@ -10,7 +10,7 @@ pipeline {
         }
         stage('Notificar') {
           steps {
-            emailext(subject: '$DEFAULT_SUBJECT', attachLog: true, body: '$DEFAULT_CONTENT  Changes:  ${CHANGES, showPaths=true, format="%a: %r %p \\n--\\"%m\\"", pathFormat="\\n\\t- %p"}', replyTo: '$DEFAULT_REPLYTO', from: 'jr.panozo@gmail.com')
+            emailext(subject: '$DEFAULT_SUBJECT', attachLog: true, body: '$DEFAULT_CONTENT  Changes:  ${CHANGES, showPaths=true, format="%a: %r %p \\n--\\"%m\\"", pathFormat="\\n\\t- %p"}', replyTo: '$DEFAULT_REPLYTO', from: 'jr.panozo@gmail.com', to: 'jr.panozo@gmail.com')
           }
         }
       }
