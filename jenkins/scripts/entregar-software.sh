@@ -1,4 +1,5 @@
 #!/bin/sh
+cd jenkins/scripts
 . ./env
 #scp -r . $usuario@$servidor:personas/. 
 echo "$usuario@$servidor:"
